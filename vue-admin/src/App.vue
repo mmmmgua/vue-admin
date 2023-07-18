@@ -6,10 +6,10 @@
 
 <script setup>
 import { computed, onMounted } from 'vue'
-import message, { getLanguage } from './i18n/index'
+import messages, { getLanguage } from './i18n/index'
 
 const locale = computed(() => {
-  return message[getLanguage()]
+  return messages[getLanguage()]
 })
 
 onMounted(() => {
