@@ -3,40 +3,98 @@
     <span class="title">{{ $t('login.login') }}</span>
     <div class="card">
       <div class="flex column justify-center">
-        <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
-          <a-form-item :label="$t('login.account')">
-            <a-input>
+        <a-form
+          ref="form"
+          :model="formData"
+          :rules="rules"
+          :label-col="labelCol"
+          :wrapper-col="wrapperCol"
+          labelAlign="left"
+        >
+          <a-form-item name="username" :label="$t('login.account')">
+            <a-input v-model:value="formData.username" :maxlength="8">
               <template #prefix>
                 <user-outlined />
               </template>
             </a-input>
           </a-form-item>
-          <a-form-item :label="$t('login.password')">
-            <a-input>
+          <a-form-item name="password" :label="$t('login.password')">
+            <a-input v-model:value="formData.password" type="password" :maxlength="10">
               <template #prefix>
                 <lock-outlined />
               </template>
             </a-input>
           </a-form-item>
-          <a-form-item :label="$t('login.code')">
-            <a-input>
+          <a-form-item name="code" :label="$t('login.code')">
+            <a-input v-model:value="formData.code">
               <template #suffix>
                 <div class="verify-code"></div>
               </template>
             </a-input>
           </a-form-item>
         </a-form>
-        <a-button class="submit-btn" type="primary">{{ $t('login.login') }}</a-button>
+        <a-button class="submit-btn" type="primary" @click="submit" :loading="submitLoading">{{
+          $t('login.login')
+        }}</a-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { inject, reactive, ref } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
+import { validateAccount, validatePwd } from '@/utils/utils'
 
-const labelCol = { span: 4 }
-const wrapperCol = { span: 20 }
+const t = inject('t')
+
+const labelCol = { span: 6 }
+const wrapperCol = { span: 18 }
+const form = ref()
+const submitLoading = ref(false)
+const validateUsername = () => {
+  return new Promise((resolve, reject) => {
+    if (!validateAccount(formData.username)) {
+      reject(t('login.account_format_err'))
+    }
+    resolve()
+  })
+}
+const validatePassword = () => {
+  return new Promise((resolve, reject) => {
+    if (!validatePwd(formData.password)) {
+      reject(t('login.pwd_format_err'))
+    }
+    resolve()
+  })
+}
+const rules = {
+  username: [{ validator: validateUsername, trigger: 'blur' }],
+  password: [{ validator: validatePassword, trigger: 'blur' }],
+  code: [{ required: true, message: t('login.code_empty'), trigger: 'blur' }]
+}
+const formData = reactive({
+  username: '',
+  password: '',
+  code: ''
+})
+
+const submit = () => {
+  form.value
+    .validate()
+    .then((data) => {
+      // data: form value
+      console.log('form value:', data)
+      submitLoading.value = true
+      const timer = setTimeout(() => {
+        submitLoading.value = false
+        clearTimeout(timer)
+      }, 2000)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 </script>
 
 <style lang="scss" scoped>

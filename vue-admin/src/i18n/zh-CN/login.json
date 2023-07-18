@@ -2,5 +2,8 @@
   "login": "登录",
   "account": "帐号",
   "password": "密码",
-  "code": "验证码"
+  "code": "验证码",
+  "account_format_err": "帐号格式错误",
+  "pwd_format_err": "密码格式错误",
+  "code_empty": "验证码不能为空"
 }
