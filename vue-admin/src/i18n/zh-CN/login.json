@@ -1,3 +1,6 @@
 {
-  "login": "登录"
+  "login": "登录",
+  "account": "帐号",
+  "password": "密码",
+  "code": "验证码"
 }
