@@ -86,7 +86,9 @@ const submit = () => {
     .then(async (data) => {
       submitLoading.value = true
       await useUserStore().login(data)
-      submitLoading.value = false
+      setTimeout(() => {
+        submitLoading.value = false
+      }, 2000)
     })
     .catch((err) => {
       console.log(err)
