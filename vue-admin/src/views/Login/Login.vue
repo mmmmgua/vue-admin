@@ -45,6 +45,7 @@
 import { inject, reactive, ref } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { validateAccount, validatePwd } from '@/utils/utils'
+import { useUserStore } from '../../stores/user'
 
 const t = inject('t')
 
@@ -82,14 +83,10 @@ const formData = reactive({
 const submit = () => {
   form.value
     .validate()
-    .then((data) => {
-      // data: form value
-      console.log('form value:', data)
+    .then(async (data) => {
       submitLoading.value = true
-      const timer = setTimeout(() => {
-        submitLoading.value = false
-        clearTimeout(timer)
-      }, 2000)
+      await useUserStore().login(data)
+      submitLoading.value = false
     })
     .catch((err) => {
       console.log(err)

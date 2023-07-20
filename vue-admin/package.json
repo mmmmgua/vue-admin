@@ -7,7 +7,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "mock": "json-server -w src/mock/db.json -c src/mock/json-server.json -m src/mock/middleware.js"
   },
   "dependencies": {
     "ant-design-vue": "^4.0.0",
