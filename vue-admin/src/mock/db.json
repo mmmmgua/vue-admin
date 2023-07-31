@@ -3,5 +3,14 @@
     "username": "sadsadad",
     "password": "1111111111",
     "code": "123sd"
+  },
+  "sys": {
+    "menu": {
+      "userTree": {
+        "code": 0,
+        "data": [],
+        "msg": "请求成功"
+      }
+    }
   }
 }

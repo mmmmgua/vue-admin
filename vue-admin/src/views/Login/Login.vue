@@ -3,14 +3,7 @@
     <span class="title">{{ $t('login.login') }}</span>
     <div class="card">
       <div class="flex column justify-center">
-        <a-form
-          ref="form"
-          :model="formData"
-          :rules="rules"
-          :label-col="labelCol"
-          :wrapper-col="wrapperCol"
-          labelAlign="left"
-        >
+        <a-form ref="form" :model="formData" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol" labelAlign="left">
           <a-form-item name="username" :label="$t('login.account')">
             <a-input v-model:value="formData.username" :maxlength="8">
               <template #prefix>
@@ -33,9 +26,7 @@
             </a-input>
           </a-form-item>
         </a-form>
-        <a-button class="submit-btn" type="primary" @click="submit" :loading="submitLoading">{{
-          $t('login.login')
-        }}</a-button>
+        <a-button class="submit-btn" type="primary" @click="submit" :loading="submitLoading">{{ $t('login.login') }}</a-button>
       </div>
     </div>
   </div>
@@ -43,11 +34,13 @@
 
 <script setup>
 import { inject, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { validateAccount, validatePwd } from '@/utils/utils'
 import { useUserStore } from '../../stores/user'
 
 const t = inject('t')
+const router = useRouter()
 
 const labelCol = { span: 6 }
 const wrapperCol = { span: 18 }
@@ -88,9 +81,11 @@ const submit = () => {
       await useUserStore().login(data)
       setTimeout(() => {
         submitLoading.value = false
+        //router.push({ path: '/home' })
       }, 2000)
     })
     .catch((err) => {
+      submitLoading.value = false
       console.log(err)
     })
 }

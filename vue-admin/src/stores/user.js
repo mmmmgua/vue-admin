@@ -23,5 +23,10 @@ export const useUserStore = defineStore('user', {
         return Promise.reject(error)
       }
     }
+  },
+  persist: {
+    user_token: {
+      key: 'localStorage'
+    }
   }
 })

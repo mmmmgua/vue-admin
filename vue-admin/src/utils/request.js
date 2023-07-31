@@ -1,9 +1,5 @@
 import axios from 'axios'
 import { useUserStore } from '../stores/user'
-import { inject } from 'vue'
-
-const message = inject('message')
-const t = inject('t')
 
 const axiosInstance = axios.create({
   // eslint-disable-next-line no-undef
@@ -30,7 +26,7 @@ axiosInstance.interceptors.response.use(
   (response) => {
     const status = response.status
     if (parseInt(status / 100) === 5) {
-      message.error(t('error.server_error'))
+      // TODO: error message
     }
     return response
   },
