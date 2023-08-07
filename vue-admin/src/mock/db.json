@@ -4,13 +4,9 @@
     "password": "1111111111",
     "code": "123sd"
   },
-  "sys": {
-    "menu": {
-      "userTree": {
-        "code": 0,
-        "data": [],
-        "msg": "请求成功"
-      }
-    }
+  "userTree": {
+    "code": 0,
+    "data": [{ "id": 0, "menuName": "菜单管理", "children": [], "icon": "", "path": "menu", "component": "menu" }],
+    "msg": "请求成功"
   }
 }

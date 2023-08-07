@@ -8,8 +8,7 @@ export const useUserStore = defineStore('user', {
       nickname: '',
       avatar: '',
       phone: '',
-      user_token: '',
-      permission_routes: []
+      user_token: ''
     }
   },
   actions: {

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home/Home.vue'
 
-const constantRoutes = [
+export const constantRoutes = [
   {
     path: '/',
     name: 'home',

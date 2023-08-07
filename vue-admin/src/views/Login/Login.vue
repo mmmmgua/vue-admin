@@ -81,7 +81,7 @@ const submit = () => {
       await useUserStore().login(data)
       setTimeout(() => {
         submitLoading.value = false
-        //router.push({ path: '/home' })
+        router.push({ path: '/' })
       }, 2000)
     })
     .catch((err) => {
