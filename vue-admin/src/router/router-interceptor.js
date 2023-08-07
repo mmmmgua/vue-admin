@@ -1,5 +1,5 @@
-import { usePermissionStore } from '../stores/permission'
-import { useUserStore } from '../stores/user'
+import { usePermissionStore } from '@/stores/permission'
+import { useUserStore } from '@/stores/user'
 import router from './index'
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
@@ -10,7 +10,8 @@ router.beforeEach(async (to, from, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      const hasPermissionRoutes = usePermissionStore().permission_routes && usePermissionStore().permission_routes.length > 0
+      const hasPermissionRoutes =
+        usePermissionStore().permission_routes && usePermissionStore().permission_routes.length > 0
       if (hasPermissionRoutes) {
         next()
       } else {

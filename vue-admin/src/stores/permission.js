@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { getUserMenuTree } from '../api/user'
-import { constantRoutes } from '../router/index'
-import Layout from '../layout/index.vue'
+import { getUserMenuTree } from '@/api/user'
+import { constantRoutes } from '@/router/index'
+import Layout from '@/layout/index.vue'
 
 /**
  * Filter asynchronous routing tables by recursion
@@ -24,7 +24,7 @@ function filterAsyncRoutes(menuTree) {
         tmp.component = Layout
         tmp.alwaysShow = true
       } else if (menu.menuType === Menu) {
-        //tmp.component = (res) => require([`@/views${menu.component}.vue`], res)
+        tmp.component = () => import(`@/views${menu.component}.vue`)
       }
       if (menu.child && menu.child.length > 0) {
         tmp.children = filterAsyncRoutes(menu.child)

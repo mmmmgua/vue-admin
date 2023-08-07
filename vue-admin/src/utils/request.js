@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useUserStore } from '../stores/user'
+import { useUserStore } from '@/stores/user'
 
 const axiosInstance = axios.create({
   // eslint-disable-next-line no-undef

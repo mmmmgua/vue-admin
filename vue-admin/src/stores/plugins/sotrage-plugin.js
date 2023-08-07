@@ -1,5 +1,5 @@
 // pinia plugin https://pinia.vuejs.org/zh/core-concepts/plugins.html
-import { setStorage, removeStorage, getStorage } from '../../utils/storage'
+import { setStorage, removeStorage, getStorage } from '@/utils/storage'
 
 // 插件4参：app, options, pinia, store
 export function storagePlugin({ options, store }) {

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { login } from '../api/login'
+import { login } from '@/api/login'
 
 export const useUserStore = defineStore('user', {
   state: () => {
