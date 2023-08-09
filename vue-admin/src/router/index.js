@@ -1,15 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home/Home.vue'
+import Layout from '@/Layout/index.vue'
 
 export const constantRoutes = [
   {
     path: '/',
-    name: 'home',
-    component: Home
+    redirect: '/home',
+    component: Layout,
+    children: [
+      {
+        path: '/home',
+        component: Home,
+        name: 'Home',
+        meta: { title: 'home', icon: 'dashboard', affix: true }
+      }
+    ]
   },
   {
     path: '/login',
     name: 'login',
+    hidden: true,
     component: () => import('@/views/Login/Login.vue')
   }
 ]

@@ -22,7 +22,6 @@ function filterAsyncRoutes(menuTree) {
       }
       if (menu.menuType === Directory) {
         tmp.component = Layout
-        tmp.alwaysShow = true
       } else if (menu.menuType === Menu) {
         tmp.component = () => import(`@/views${menu.component}.vue`)
       }

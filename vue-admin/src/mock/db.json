@@ -6,7 +6,28 @@
   },
   "userTree": {
     "code": 0,
-    "data": [{ "id": 0, "menuName": "菜单管理", "children": [], "icon": "", "path": "menu", "component": "menu" }],
+    "data": [
+      {
+        "child": [
+          {
+            "id": 1,
+            "menuName": "menu_management",
+            "menuType": 2,
+            "parentId": 1,
+            "path": "/permission/menu",
+            "component": "/permission/Menu",
+            "icon": ""
+          }
+        ],
+        "id": 0,
+        "menuName": "sys_management",
+        "menuType": 1,
+        "parentId": 0,
+        "path": "/permission",
+        "component": "/permission",
+        "icon": "tree"
+      }
+    ],
     "msg": "请求成功"
   }
 }
