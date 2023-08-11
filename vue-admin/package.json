@@ -10,6 +10,7 @@
     "mock": "json-server -w src/mock/db.json -c src/mock/json-server.json -m src/mock/middleware.cjs"
   },
   "dependencies": {
+    "axios": "^1.4.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
