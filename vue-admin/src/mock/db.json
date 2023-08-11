@@ -1,0 +1,35 @@
+{
+  "login": {
+    "username": "sadsadad",
+    "password": "1111111111",
+    "code": "123sd"
+  },
+  "userTree": {
+    "code": 0,
+    "data": [
+      {
+        "child": [
+          {
+            "id": 1,
+            "menuName": "menu_management",
+            "menuType": 2,
+            "parentId": 1,
+            "path": "/permission/menu",
+            "component": "/Permission/Menu",
+            "name": "permission",
+            "icon": ""
+          }
+        ],
+        "id": 0,
+        "menuName": "sys_management",
+        "menuType": 1,
+        "parentId": 0,
+        "path": "/permission",
+        "component": "/permission",
+        "name": "menu",
+        "icon": "tree"
+      }
+    ],
+    "msg": "请求成功"
+  }
+}

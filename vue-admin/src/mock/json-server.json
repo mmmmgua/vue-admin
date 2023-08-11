@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "watch": true,
+  "routes": "src/mock/routes.json"
+}
