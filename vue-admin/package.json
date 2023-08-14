@@ -10,6 +10,7 @@
     "mock": "json-server -w src/mock/db.json -c src/mock/json-server.json -m src/mock/middleware.cjs"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^4.0.0",
     "axios": "^1.4.0",
     "pinia": "^2.1.6",
