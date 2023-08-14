@@ -1,8 +1,7 @@
 import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home/Home.vue'
 import Layout from '@/layout/layout.vue'
 
-export const constantRoutes:Array<RouteRecordRaw> = [
+export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/home',
@@ -10,7 +9,7 @@ export const constantRoutes:Array<RouteRecordRaw> = [
     children: [
       {
         path: '/home',
-        component: Home,
+        component: () => import('@/views/Home/Home.vue'),
         name: 'Home',
         meta: { title: 'home', icon: 'dashboard', affix: true }
       }
@@ -19,8 +18,19 @@ export const constantRoutes:Array<RouteRecordRaw> = [
   {
     path: '/login',
     name: 'login',
-    meta:{hidden:true},
+    meta: { hidden: true },
     component: () => import('@/views/Login/Login.vue')
+  },
+  {
+    path: '/404',
+    name: '404',
+    meta: { hidden: true, title: '404' },
+    component: () => import('@/views/404/404.vue')
+  },
+  {
+    path: '/:pathMatch(.*)',
+    meta: { hidden: true, title: '404' },
+    redirect: '/404'
   }
 ]
 

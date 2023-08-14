@@ -14,6 +14,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const hasPermissionRoutes =
         usePermissionStore().permission_routes && usePermissionStore().permission_routes.length > 0
+        
       if (hasPermissionRoutes) {
         next()
       } else {
@@ -21,8 +22,12 @@ router.beforeEach(async (to, from, next) => {
           const userMenuTree = await usePermissionStore().getUserMenu()
           const accessRoutes = await usePermissionStore().generateRoutes(userMenuTree)
           addRoutes(router, accessRoutes)
-
-          next({ ...to, replace: true })
+          if (to.redirectedFrom) {
+            router.replace(to.redirectedFrom)
+            next()
+          } else {
+            next({ ...to, replace: true })
+          }
         } catch (error: any) {
           // for debug
           console.warn('generate menu tree failed: ', JSON.stringify(error.message))

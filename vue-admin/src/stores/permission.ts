@@ -11,7 +11,7 @@ const modules = import.meta.glob("../views/**/**.vue")
  * @param roles
  */
 function filterAsyncRoutes(menuTree: Array<any>) {
-  const res: Array<any> = []
+  const res: Array<RouteRecordRaw> = []
 
   menuTree.forEach((menu) => {
     const Directory = 1 // menu类型: 目录
