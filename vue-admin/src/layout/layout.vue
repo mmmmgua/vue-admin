@@ -2,7 +2,7 @@
   <a-layout class="app-container">
     <slide-bar :is-menu-shown="isMenuShown" />
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header class="header">
         <nav-bar :is-menu-shown="isMenuShown" @toggle-menu="toggleMenu" />
       </a-layout-header>
       <a-layout-content
@@ -19,6 +19,7 @@ import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import SlideBar from './SlideBar/SlideBar.vue'
 import NavBar from './NavBar/NavBar.vue';
+import { useAppStore } from '@/stores/app';
 
 const isMenuShown = ref<boolean>(false);
 
@@ -35,5 +36,9 @@ const currentRoute = computed(() => {
 .app-container {
   width: 100%;
   min-height: 100vh;
+}
+.header {
+  background: var(--color-background);
+  padding: 0;
 }
 </style>

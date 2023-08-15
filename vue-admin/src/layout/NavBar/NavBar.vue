@@ -58,5 +58,6 @@ const showExitModal = (): void => {
 .icon {
   font-size: 18px;
   cursor: pointer;
+  color: var(--icon-color);
 }
 </style>

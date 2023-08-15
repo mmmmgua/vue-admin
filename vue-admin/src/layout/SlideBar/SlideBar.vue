@@ -1,21 +1,23 @@
 <template>
-  <a-layout-sider :collapsed="isMenuShown" :trigger="null" collapsible>
+  <a-layout-sider :collapsed="isMenuShown" :trigger="null" collapsible :theme="appStore.theme">
     <div class="logo"></div>
-    <a-menu v-model:selectedKeys="selectedKeys" :open-keys="selectedKeys" theme="dark" mode="inline" :items="menuItems"
+    <a-menu v-model:selectedKeys="selectedKeys" :open-keys="selectedKeys" :theme="appStore.theme" mode="inline" :items="menuItems"
       @click="routerLink"></a-menu>
   </a-layout-sider>
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, ref } from 'vue'
+import { computed, inject, onMounted, ref } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import { usePermissionStore } from '@/stores/permission'
+import { useAppStore } from '@/stores/app'
 
 const t: any = inject('t')
 const router = useRouter()
 const props = defineProps(['isMenuShown'])
 
 const collapsed = ref(false)
+const appStore = useAppStore()
 const permission_routes = usePermissionStore().permission_routes
 const selectedKeys = ref([])
 const menuItems = ref([])
@@ -71,4 +73,15 @@ function setActiveMenu(menus: never[]): void {
 }
 </script>
 
-<style></style>
+<style>
+.ant-menu-dark{ 
+  background: var(--color-background);
+}
+.ant-layout .ant-layout-sider  {
+  background: var(--color-background);
+  box-shadow: 6px 0px 10px 1px rgba(20, 20, 20, 0.1)
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background: var(--color-background);
+}
+</style>
