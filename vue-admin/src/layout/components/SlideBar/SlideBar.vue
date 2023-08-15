@@ -1,5 +1,5 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+  <a-layout-sider :collapsed="props.isMenuShown" :trigger="null" collapsible>
     <div class="logo"></div>
     <a-menu
       v-model:selectedKeys="selectedKeys"
@@ -18,8 +18,8 @@ import { usePermissionStore } from '@/stores/permission'
 
 const t = inject('t')
 const router = useRouter()
+const props = defineProps(['isMenuShown'])
 
-const collapsed = ref(false)
 const permission_routes = usePermissionStore().permission_routes
 const selectedKeys = ref([])
 const menuItems = ref([])

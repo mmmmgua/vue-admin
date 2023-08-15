@@ -1,9 +1,9 @@
 <template>
   <a-layout class="app-container">
-    <slide-bar></slide-bar>
+    <slide-bar :is-menu-shown="isMenuShown"></slide-bar>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
-        <div>导航栏</div>
+        <nav-bar :is-menu-shown="isMenuShown" @toggle-menu="toggleMenu" />
       </a-layout-header>
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
@@ -15,13 +15,20 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import SlideBar from './components/SlideBar/SlideBar.vue'
+import NavBar from './components/NavBar/NavBar.vue'
+
+const isMenuShown = ref(false)
 
 const currentRoute = computed(() => {
   return useRoute().path
 })
+
+const toggleMenu = () => {
+  isMenuShown.value = !isMenuShown.value
+}
 </script>
 
 <style lang="scss" scoped>
