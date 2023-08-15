@@ -35,6 +35,7 @@
 <script setup lang="ts">
 import { inject, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { validateAccount, validatePwd } from '@/utils/utils'
 import { useUserStore } from '@/stores/user'
 

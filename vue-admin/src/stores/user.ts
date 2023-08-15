@@ -22,6 +22,19 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         return Promise.reject(error)
       }
+    },
+    async logout(){
+      try {
+        // TODO: 调用退出接口
+        this.user_token = ''
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve(null)
+          }, 500);
+        })
+      } catch (error) {
+        
+      }
     }
   }
 })
