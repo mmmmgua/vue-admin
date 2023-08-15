@@ -3,6 +3,7 @@ import { getUserMenuTree } from '@/api/user'
 import { constantRoutes } from '@/router/index'
 import Layout from '@/layout/index.vue'
 
+const modules = import.meta.glob('../views/**/**.vue')
 /**
  * Filter asynchronous routing tables by recursion
  * @param routes asyncRoutes
@@ -23,7 +24,7 @@ function filterAsyncRoutes(menuTree) {
       if (menu.menuType === Directory) {
         tmp.component = Layout
       } else if (menu.menuType === Menu) {
-        tmp.component = () => import(`@/views${menu.component}.vue`)
+        tmp.component = modules[`../views${menu.component}.vue`]
       }
       if (menu.child && menu.child.length > 0) {
         tmp.children = filterAsyncRoutes(menu.child)
@@ -55,13 +56,11 @@ export const usePermissionStore = defineStore('permission', {
     },
     generateRoutes(menuTree) {
       return new Promise((resolve) => {
-        let accessedRoutes
+        let accessedRoutes = []
         if (menuTree && menuTree.length) {
-          accessedRoutes = constantRoutes.concat(filterAsyncRoutes(menuTree))
-        } else {
-          accessedRoutes = constantRoutes || []
+          accessedRoutes = filterAsyncRoutes(menuTree)
         }
-        this.permission_routes = accessedRoutes
+        this.permission_routes = constantRoutes.concat(accessedRoutes)
         resolve(accessedRoutes)
       })
     }
