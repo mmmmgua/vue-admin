@@ -1,4 +1,6 @@
 {
   "server_error": "oops, server error",
-  "unexpect_error": "unhandled error"
+  "unexpect_error": "unhandled error",
+  "404": "Unable to find the correct address or does not have permission",
+  "go_home": "homepage"
 }

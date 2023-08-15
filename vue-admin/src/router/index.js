@@ -21,6 +21,19 @@ export const constantRoutes = [
     name: 'login',
     hidden: true,
     component: () => import('@/views/Login/Login.vue')
+  },
+  {
+    path: '/404',
+    name: '404',
+    hidden: true,
+    meta: { title: '404' },
+    component: () => import('@/views/404/404.vue')
+  },
+  {
+    path: '/:pathMatch(.*)',
+    hidden: true,
+    meta: { title: '404' },
+    redirect: '/404'
   }
 ]
 
