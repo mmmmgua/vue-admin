@@ -3,7 +3,7 @@
     <slide-bar></slide-bar>
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
-        <div>sb</div>
+        <div>导航栏</div>
       </a-layout-header>
       <a-layout-content
         :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"

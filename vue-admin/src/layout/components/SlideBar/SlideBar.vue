@@ -6,20 +6,23 @@
       theme="dark"
       mode="inline"
       :items="menuItems"
+      @click="routerLink"
     ></a-menu>
   </a-layout-sider>
 </template>
 
 <script setup>
 import { inject, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { usePermissionStore } from '@/stores/permission'
+
+const t = inject('t')
+const router = useRouter()
 
 const collapsed = ref(false)
 const permission_routes = usePermissionStore().permission_routes
 const selectedKeys = ref([])
 const menuItems = ref([])
-
-const t = inject('t')
 
 onMounted(() => {
   menuItems.value = generateSlideBarMenu(permission_routes)
@@ -51,6 +54,10 @@ function generateSlideBarMenu(routes) {
   })
 
   return res
+}
+
+function routerLink({ key }) {
+  router.push({ path: key })
 }
 </script>
 

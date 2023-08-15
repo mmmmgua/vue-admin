@@ -15,7 +15,8 @@
             "menuType": 2,
             "parentId": 1,
             "path": "/permission/menu",
-            "component": "/permission/Menu",
+            "component": "/Permission/Menu",
+            "name": "permission",
             "icon": ""
           }
         ],
@@ -25,6 +26,7 @@
         "parentId": 0,
         "path": "/permission",
         "component": "/permission",
+        "name": "menu",
         "icon": "tree"
       }
     ],
