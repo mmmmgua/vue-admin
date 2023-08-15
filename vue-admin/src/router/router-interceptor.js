@@ -18,11 +18,16 @@ router.beforeEach(async (to, from, next) => {
         try {
           const userMenuTree = await usePermissionStore().getUserMenu()
           const accessRoutes = await usePermissionStore().generateRoutes(userMenuTree)
-          router.addRoute(accessRoutes)
-          next({ path: '/' })
+          addRoutes(router, accessRoutes)
+          if (to.redirectedFrom) {
+            router.replace(to.redirectedFrom)
+            next()
+          } else {
+            next({ ...to, replace: true })
+          }
         } catch (error) {
           // for debug
-          console.warn('generate menu tree failed: ', JSON.stringify(error))
+          console.warn('generate menu tree failed: ', JSON.stringify(error.message))
           next(`/login?redirect=${to.path}`)
         }
       }
@@ -36,3 +41,12 @@ router.beforeEach(async (to, from, next) => {
     }
   }
 })
+
+function addRoutes(router, routes, parentKey) {
+  routes.forEach((route) => {
+    router.addRoute(parentKey || '', route)
+    if (route.children && route.children.length > 0) {
+      addRoutes(router, route.children, route.name)
+    }
+  })
+}
