@@ -26,7 +26,7 @@ const menuItems = ref([])
 
 onMounted(() => {
   menuItems.value = generateSlideBarMenu(permission_routes)
-  selectedKeys.value.push(menuItems.value[0].key)
+  setActiveMenu(menuItems.value)
 })
 
 function generateSlideBarMenu(routes) {
@@ -58,6 +58,20 @@ function generateSlideBarMenu(routes) {
 
 function routerLink({ key }) {
   router.push({ path: key })
+}
+
+function setActiveMenu(menus) {
+  if (menus.length) {
+    const currentPath = router.currentRoute.value.path
+    menus.forEach((menu) => {
+      if (currentPath === menu.key) {
+        selectedKeys.value.push(menu.key)
+      }
+      if (menu.children && menu.children.length > 0) {
+        setActiveMenu(menu.children)
+      }
+    })
+  }
 }
 </script>
 
