@@ -20,7 +20,9 @@
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: #E8EAED;
 
-  --background-light: #F9F9F9
+  --background-light: #fff;
+  --primary-color: #1677ff;
+  --primary-dark-color: #091b85;
 }
 
 /* semantic color variables for this project */
@@ -36,6 +38,7 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+  --icon-color: var(var(--vt-c-black))
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,6 +52,8 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+
+    --icon-color: var(--vt-c-text-dark-2);
   }
 }
 

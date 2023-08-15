@@ -2,7 +2,7 @@
   <a-layout class="app-container">
     <slide-bar :is-menu-shown="isMenuShown"></slide-bar>
     <a-layout>
-      <a-layout-header style="background: #fff; padding: 0">
+      <a-layout-header class="header">
         <nav-bar :is-menu-shown="isMenuShown" @toggle-menu="toggleMenu" />
       </a-layout-header>
       <a-layout-content
@@ -35,5 +35,9 @@ const toggleMenu = () => {
 .app-container {
   width: 100%;
   min-height: 100vh;
+}
+.header {
+  background: var(--color-background);
+  padding: 0;
 }
 </style>

@@ -1,9 +1,14 @@
 <template>
-  <a-layout-sider :collapsed="props.isMenuShown" :trigger="null" collapsible>
+  <a-layout-sider
+    :collapsed="props.isMenuShown"
+    :theme="appStore.theme"
+    :trigger="null"
+    collapsible
+  >
     <div class="logo"></div>
     <a-menu
       v-model:selectedKeys="selectedKeys"
-      theme="dark"
+      :theme="appStore.theme"
       mode="inline"
       :items="menuItems"
       @click="routerLink"
@@ -15,11 +20,13 @@
 import { inject, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePermissionStore } from '@/stores/permission'
+import { useAppStore } from '@/stores/app'
 
 const t = inject('t')
 const router = useRouter()
 const props = defineProps(['isMenuShown'])
 
+const appStore = useAppStore()
 const permission_routes = usePermissionStore().permission_routes
 const selectedKeys = ref([])
 const menuItems = ref([])
@@ -75,4 +82,15 @@ function setActiveMenu(menus) {
 }
 </script>
 
-<style></style>
+<style>
+.ant-menu-dark {
+  background: var(--color-background);
+}
+.ant-layout .ant-layout-sider {
+  background: var(--color-background);
+  box-shadow: 6px 0px 10px 1px rgba(20, 20, 20, 0.1);
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline {
+  background: var(--color-background);
+}
+</style>
