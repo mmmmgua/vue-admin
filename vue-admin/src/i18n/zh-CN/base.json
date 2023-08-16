@@ -2,5 +2,6 @@
   "notice": "注意",
   "confirm": "确定",
   "cancel": "取消",
-  "exit_content": "确定要退出吗"
+  "exit_content": "确定要退出吗",
+  "log_out": "退出"
 }

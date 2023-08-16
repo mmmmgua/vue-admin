@@ -2,5 +2,6 @@
   "notice": "Notice",
   "confirm": "confirm",
   "cancel": "cancel",
-  "exit_content": "Do you want to exit"
+  "exit_content": "Do you want to exit",
+  "log_out": "exit"
 }

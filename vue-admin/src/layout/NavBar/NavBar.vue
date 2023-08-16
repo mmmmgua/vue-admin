@@ -5,7 +5,7 @@
       <menu-fold-outlined v-else class="icon" />
     </div>
     <div>
-      <logout-outlined class="icon" @click="showExitModal" />
+      <logout-outlined :title="t('base.log_out')" class="icon" @click="showExitModal" />
     </div>
   </div>
 </template>
