@@ -1,8 +1,11 @@
 <template>
   <div class="nav-bar">
-    <div @click="toggleMenu">
-      <menu-unfold-outlined v-if="isMenuShown" class="icon" />
-      <menu-fold-outlined v-else class="icon" />
+    <div class="flex items-center">
+      <div @click="toggleMenu">
+        <menu-unfold-outlined v-if="isMenuShown" class="icon" />
+        <menu-fold-outlined v-else class="icon" />
+      </div>
+      <breadcrumb></breadcrumb>
     </div>
     <div>
       <logout-outlined :title="t('base.log_out')" class="icon" @click="showExitModal" />
@@ -11,25 +14,26 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
+import { inject } from "vue"
+import { useRouter } from "vue-router"
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   LogoutOutlined,
-} from "@ant-design/icons-vue";
-import { Modal } from "ant-design-vue";
-import { useUserStore } from "@/stores/user";
-import { useRouter } from "vue-router";
+} from "@ant-design/icons-vue"
+import { Modal } from "ant-design-vue"
+import { useUserStore } from "@/stores/user"
+import Breadcrumb from "../Breadcrumb/Breadcrumb.vue"
 
-const t = inject("t");
+const t = inject("t")
 const router = useRouter()
 
-const props = defineProps(["isMenuShown"]);
-const emit = defineEmits(["toggleMenu"]);
+defineProps(["isMenuShown"])
+const emit = defineEmits(["toggleMenu"])
 
 const toggleMenu = (): void => {
-  emit("toggleMenu");
-};
+  emit("toggleMenu")
+}
 const showExitModal = (): void => {
   Modal.confirm({
     title: t("base.notice"),
@@ -37,13 +41,13 @@ const showExitModal = (): void => {
     centered: true,
     cancelText: t("base.cancel"),
     okText: t("base.confirm"),
-    onOk: async(close) => {
+    onOk: async (close) => {
       await useUserStore().logout()
       close()
-      router.replace('/login')
-    }
-  });
-};
+      router.replace("/login")
+    },
+  })
+}
 </script>
 
 <style scoped lang="scss">
@@ -55,6 +59,7 @@ const showExitModal = (): void => {
   justify-content: space-between;
   padding: 0 16px;
 }
+
 .icon {
   font-size: 18px;
   cursor: pointer;
