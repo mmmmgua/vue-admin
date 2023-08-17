@@ -31,5 +31,56 @@
       }
     ],
     "msg": "请求成功"
+  },
+  "menuTree": {
+    "code": 0,
+    "data": [
+      {
+        "child": [],
+        "component": "/home",
+        "createTime": "2023-01-01 00:00:00",
+        "icon": "#",
+        "id": "58",
+        "isFrame": 1,
+        "menuName": "home",
+        "menuType": 2,
+        "parentId": "0",
+        "path": "/home",
+        "perms": "",
+        "seq": 0,
+        "status": 0
+      },
+      {
+        "child": [
+          {
+            "component": "/permission/menu",
+            "createTime": "2023-01-01 00:00:00",
+            "icon": "",
+            "id": "5",
+            "isFrame": 1,
+            "menuName": "menu_management",
+            "menuType": 1,
+            "parentId": "1",
+            "path": "/permission/menu",
+            "perms": "",
+            "seq": 1,
+            "status": 0
+          }
+        ],
+        "component": "/permission",
+        "createTime": "2023-01-01 00:00:00",
+        "icon": "tree",
+        "id": "1",
+        "isFrame": 1,
+        "menuName": "sys_management",
+        "menuType": 1,
+        "parentId": "0",
+        "path": "/permission",
+        "perms": "",
+        "seq": 5,
+        "status": 0
+      }
+    ],
+    "msg": "请求成功"
   }
 }
