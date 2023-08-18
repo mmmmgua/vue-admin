@@ -1,3 +1,17 @@
 {
-  "menu_name": "Menu Name"
+  "menu_name": "Menu Name",
+  "type": "Menu Type",
+  "component": "Component",
+  "path": "Redirect Path",
+  "seq": "Order",
+  "status": "Status",
+  "permission": "Permission Flag",
+  "action": "Action",
+  "type_directory": "Directory",
+  "type_menu": "Menu",
+  "type_button": "Button",
+  "status_normal": "Normal",
+  "status_stop": "Deactivate",
+  "edit": "编辑",
+  "delete": "删除"
 }

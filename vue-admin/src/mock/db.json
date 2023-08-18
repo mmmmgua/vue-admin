@@ -59,7 +59,7 @@
             "id": "5",
             "isFrame": 1,
             "menuName": "menu_management",
-            "menuType": 1,
+            "menuType": 2,
             "parentId": "1",
             "path": "/permission/menu",
             "perms": "",

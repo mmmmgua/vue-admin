@@ -1,3 +1,17 @@
 {
-  "menu_name": "菜单名称"
+  "menu_name": "菜单名称",
+  "type": "类型",
+  "component": "组件",
+  "path": "路径",
+  "seq": "排序",
+  "status": "状态",
+  "permission": "权限标识",
+  "action": "操作",
+  "type_directory": "目录",
+  "type_menu": "菜单",
+  "type_button": "按钮",
+  "status_normal": "正常",
+  "status_stop": "停用",
+  "edit": "编辑",
+  "delete": "删除"
 }
