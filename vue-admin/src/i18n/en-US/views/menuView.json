@@ -10,6 +10,7 @@
   "type_directory": "Directory",
   "type_menu": "Menu",
   "type_button": "Button",
+  "name": "Name",
   "status_normal": "Normal",
   "status_stop": "Deactivate",
   "add": "Add",
@@ -26,5 +27,6 @@
   "disabled": "Disabled",
   "close": "Close",
   "confirm": "Confirm",
-  "choose_icon": "Choose Icon"
+  "choose_icon": "Choose Icon",
+  "submit_success": "Submit Success"
 }

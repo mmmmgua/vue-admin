@@ -2,5 +2,7 @@
   "server_error": "服务器开小差了",
   "unexpect_error": "未知错误",
   "404": "找不到正确的地址或没有权限",
-  "go_home": "返回首页"
+  "go_home": "返回首页",
+  "please_enter": "请输入",
+  "empty_warning": "不能为空"
 }

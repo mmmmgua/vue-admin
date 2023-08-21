@@ -10,6 +10,7 @@
   "type_directory": "目录",
   "type_menu": "菜单",
   "type_button": "按钮",
+  "name": "名称",
   "status_normal": "正常",
   "status_stop": "停用",
   "add": "添加",
@@ -26,5 +27,6 @@
   "disabled": "禁用",
   "close": "关闭",
   "confirm": "确定",
-  "choose_icon": "选择图标"
+  "choose_icon": "选择图标",
+  "submit_success": "提交成功"
 }
