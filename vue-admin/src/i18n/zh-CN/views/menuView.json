@@ -12,6 +12,19 @@
   "type_button": "按钮",
   "status_normal": "正常",
   "status_stop": "停用",
+  "add": "添加",
   "edit": "编辑",
-  "delete": "删除"
+  "delete": "删除",
+  "root": "根目录",
+  "path_placeholder": "请输入菜单路径",
+  "component_placeholder": "请输入组件名称",
+  "path_label": "菜单路径",
+  "component_label": "前端组件",
+  "icon_label": "图标",
+  "order_label": "排序",
+  "using": "使用",
+  "disabled": "禁用",
+  "close": "关闭",
+  "confirm": "确定",
+  "choose_icon": "选择图标"
 }

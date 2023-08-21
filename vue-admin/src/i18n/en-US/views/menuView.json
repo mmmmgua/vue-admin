@@ -12,6 +12,19 @@
   "type_button": "Button",
   "status_normal": "Normal",
   "status_stop": "Deactivate",
-  "edit": "编辑",
-  "delete": "删除"
+  "add": "Add",
+  "edit": "Edit",
+  "delete": "Delete",
+  "root": "Root",
+  "path_placeholder": "Please enter the menu path",
+  "component_placeholder": "Please enter a component name",
+  "path_label": "Menu Path",
+  "component_label": "Components",
+  "icon_label": "Icon",
+  "order_label": "Order",
+  "using": "Using",
+  "disabled": "Disabled",
+  "close": "Close",
+  "confirm": "Confirm",
+  "choose_icon": "Choose Icon"
 }

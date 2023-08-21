@@ -1,24 +1,27 @@
 <template>
   <div class="menu-container">
-    <a-button class="add" type="primary">{{ $t('base.add') }}</a-button>
+    <a-button class="add" type="primary" @click="showMenuDrawer('add')">{{ $t('base.add') }}</a-button>
     <div class="table-layout">
       <a-table :dataSource="tableResource" :columns="tableColumns" :loading="tableLoading"
         :rowClassName="customColumnClass" childrenColumnName="child">
         <template #bodyCell="{column, record}">
           <template v-if="column.key === 'status'">
-            <span :class="record.status === 0 ? 'status-normal' : 'status-stop'">
+            <span :class="generateStatusColumnClass(record.status)">
               {{ $t(`menuView.${STATUS_TYPE[record.status]}`) }}
             </span>
           </template>
           <template v-if="column.key === 'action'">
             <div class="flex items-center justify-between">
-              <a-button class="action-button" type="text">{{ $t('menuView.edit') }}</a-button>
+              <a-button class="action-button" type="text" @click="showMenuDrawer('edit', record)">
+                {{ $t('menuView.edit') }}
+              </a-button>
               <a-button class="action-button"  type="text">{{ $t('menuView.delete') }}</a-button>
             </div>
           </template>
         </template>
       </a-table>
     </div>
+    <menu-drawer ref="menuDrawer" :data="tableResource"></menu-drawer>
   </div>
 </template>
 
@@ -27,10 +30,17 @@ import { inject, onMounted, ref } from 'vue'
 import { MessageApi } from 'ant-design-vue/es/message'
 import { VueI18nTranslation } from 'vue-i18n'
 import { getAllMenuTree } from '@/api/menu'
+import MenuDrawer from './components/MenuDrawer.vue'
 
 type menuTree = {
   child: menuTree[],
   status: number
+}
+type menuDrawer = {
+  value:{
+    show: Function,
+    close: Function
+  }
 }
 const MENU_TYPE = {
   1: 'type_directory',
@@ -42,6 +52,7 @@ const STATUS_TYPE = { 0: 'status_normal', 1: 'status_stop' }
 const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
 const message = inject<MessageApi>('message') as MessageApi
 
+const menuDrawer = ref<menuDrawer>(null) as menuDrawer
 const tableColumns = ref<object[]>(
   [
     {
@@ -121,6 +132,10 @@ function generateStatusColumnClass(status: number): string {
   } else {
     return 'status-stop'
   }
+}
+
+function showMenuDrawer(type:string, menuInfo: menuTree | undefined):void{
+  menuDrawer.value.show(type, menuInfo)
 }
 </script>
 
