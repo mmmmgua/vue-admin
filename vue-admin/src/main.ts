@@ -14,7 +14,10 @@ import './router/router-interceptor'
 import messages, { getLocalLanguage } from '@/i18n'
 import { createI18n } from 'vue-i18n'
 
+import SvgIcon from './components/SvgIcon/SvgIcon.vue'
+
 const app = createApp(App)
+app.component('svg-icon', SvgIcon)
 const i18n = createI18n({
   locale: getLocalLanguage(),
   messages
