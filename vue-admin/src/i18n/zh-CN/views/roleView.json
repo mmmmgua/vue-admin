@@ -7,5 +7,12 @@
   "role": "身份",
   "status": "状态",
   "action": "操作",
-  "search_placeholder": "请输入内容"
+  "search_placeholder": "请输入内容",
+  "new_roles": "新建角色",
+  "edit_roles": "编辑角色",
+  "label_name": "角色名称",
+  "label_order": "显示顺序",
+  "label_status": "状态",
+  "switch_close": "关闭",
+  "switch_using": "使用"
 }

@@ -7,5 +7,12 @@
   "role": "Role",
   "status": "Status",
   "action": "Action",
-  "search_placeholder": "Input something..."
+  "search_placeholder": "Input something...",
+  "new_roles": "New Roles",
+  "edit_roles": "Edit Roles",
+  "label_name": "Role Name",
+  "label_order": "Order",
+  "label_status": "Status",
+  "switch_close": "Close",
+  "switch_using": "Using"
 }

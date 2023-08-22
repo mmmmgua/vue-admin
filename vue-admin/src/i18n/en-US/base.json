@@ -4,5 +4,6 @@
   "cancel": "cancel",
   "exit_content": "Do you want to exit",
   "log_out": "exit",
-  "add": "添加"
+  "add": "add",
+  "success": "Success !"
 }
