@@ -1,0 +1,11 @@
+{
+  "add_roles": "Add Roles",
+  "search": "Search",
+  "reset": "Reset",
+  "batch_delete": "Batch Delete",
+  "role_key": "Role Key",
+  "role": "Role",
+  "status": "Status",
+  "action": "Action",
+  "search_placeholder": "Input something..."
+}

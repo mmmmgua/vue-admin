@@ -1,0 +1,11 @@
+{
+  "add_roles": "添加身份",
+  "search": "搜索",
+  "reset": "重置",
+  "batch_delete": "批量删除",
+  "role_key": "角色编码",
+  "role": "身份",
+  "status": "状态",
+  "action": "操作",
+  "search_placeholder": "请输入内容"
+}

@@ -10,6 +10,16 @@
       {
         "child": [
           {
+            "id": 6,
+            "menuName": "role_management",
+            "menuType": 2,
+            "parentId": 1,
+            "path": "/permission/role",
+            "component": "/Permission/Role",
+            "name": "permission",
+            "icon": ""
+          },
+          {
             "id": 1,
             "menuName": "menu_management",
             "menuType": 2,
@@ -62,6 +72,20 @@
             "menuType": 2,
             "parentId": "1",
             "path": "/permission/menu",
+            "perms": "",
+            "seq": 1,
+            "status": 0
+          },
+          {
+            "component": "/permission/role",
+            "createTime": "2023-01-01 00:00:00",
+            "icon": "",
+            "id": "6",
+            "isFrame": 1,
+            "menuName": "role_management",
+            "menuType": 2,
+            "parentId": "1",
+            "path": "/permission/role",
             "perms": "",
             "seq": 1,
             "status": 0
