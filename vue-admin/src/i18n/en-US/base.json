@@ -5,5 +5,8 @@
   "exit_content": "Do you want to exit",
   "log_out": "exit",
   "add": "add",
-  "success": "Success !"
+  "success": "Success !",
+  "more": "More",
+  "tips": "Tips",
+  "delete_tips": "Do you wanna delete this?"
 }

@@ -1,6 +1,6 @@
 <template>
   <a-modal v-model:open="visible" :title="t(`roleView.${type}_roles`)" :okText="t('base.confirm')"
-    :cancelText="t('base.cancel')" :confirm-loading="confirmBtnLoading" @ok="submit">
+    :cancelText="t('base.cancel')" :confirm-loading="confirmBtnLoading" @ok="submit" @cancel="close">
     <a-form class="form-layout" :rules="formRules" :model="currentData" ref="form">
       <a-form-item :label="t('roleView.label_name')" name="roleName">
         <a-input v-model:value="currentData.roleName"></a-input>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang='ts'>
-import { inject, ref } from 'vue'
+import { inject, markRaw, reactive, readonly, ref, toRaw } from 'vue'
 import { VueI18nTranslation } from 'vue-i18n'
 import { MessageApi } from 'ant-design-vue/es/message'
 import { Rule } from 'ant-design-vue/es/form'
@@ -35,6 +35,7 @@ const confirmBtnLoading = ref<boolean>(false)
 const type = ref<string>('add')
 const currentSwitch = ref<boolean>(false)
 const currentData = ref<role>({} as role)
+const initData = {...currentData.value}
 const formRules: Record<string, Rule[]> = {
   roleName: [{ required: true, message: t('error.empty_warning') }],
   roleKey: [{ required: true, message: t('error.empty_warning') }],
@@ -45,9 +46,15 @@ const formRules: Record<string, Rule[]> = {
 function show(dialogType: string = 'add', roleInfo: role) {
   type.value = dialogType
   visible.value = true
+  if (dialogType === 'edit') {
+    currentData.value = {...roleInfo}
+    currentSwitch.value = roleInfo.status === 0
+    
+  }
 }
 function close() {
   visible.value = false
+  currentData.value = {...initData}
 }
 function submit() {
   form.value.validate().then(async valid => {

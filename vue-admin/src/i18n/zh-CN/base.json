@@ -5,5 +5,8 @@
   "exit_content": "确定要退出吗",
   "log_out": "退出",
   "add": "添加",
-  "success": "成功"
+  "success": "成功",
+  "more": "更多",
+  "tips": "提示",
+  "delete_tips": "确定要删除吗?"
 }

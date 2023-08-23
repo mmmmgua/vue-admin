@@ -14,5 +14,7 @@
   "label_order": "Order",
   "label_status": "Status",
   "switch_close": "Close",
-  "switch_using": "Using"
+  "switch_using": "Using",
+  "role_permission": "Set Permission",
+  "empty_select": "You an't selected any roles"
 }
