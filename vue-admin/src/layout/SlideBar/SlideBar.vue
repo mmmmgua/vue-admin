@@ -7,11 +7,12 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, ref } from 'vue'
+import { inject, onMounted, ref, h } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
+import { ItemType } from 'ant-design-vue/es/menu/src/hooks/useItems'
+import SvgIcon from '@/components/SvgIcon/SvgIcon.vue'
 import { usePermissionStore } from '@/stores/permission'
 import { useAppStore } from '@/stores/app'
-import { ItemType } from 'ant-design-vue/es/menu/src/hooks/useItems'
 
 const t: any = inject('t')
 const router = useRouter()
@@ -19,7 +20,7 @@ const props = defineProps(['isMenuShown'])
 
 const appStore = useAppStore()
 const permission_routes = usePermissionStore().permission_routes
-const openKeys  = ref<string[]>([])
+const openKeys = ref<string[]>([])
 const selectedKeys = ref<string[]>([])
 const menuItems = ref<ItemType[]>([])
 
@@ -32,10 +33,12 @@ function generateSlideBarMenu(routes: Array<RouteRecordRaw>): ItemType[] {
   const res: ItemType[] = []
   routes.forEach((route) => {
     if (typeof route?.meta?.hidden !== 'boolean' || !route?.meta?.hidden) {
+      const icon = route?.meta?.icon as string
       const tmp: ItemType = {
         label: t('menu.' + (route?.meta?.title ?? 'menu')),
         title: t('menu.' + (route?.meta?.title ?? 'menu')),
-        key: route.path
+        key: route.path,
+        icon: icon ? h(SvgIcon, { name: icon, color: '#292a2d' }) : undefined
       }
       if (route.redirect && route?.children?.length) {
         tmp.label = t('menu.' + route.children[0]?.meta?.title ?? 'menu')

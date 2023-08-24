@@ -12,8 +12,6 @@ const props = defineProps({
   color: String
 })
 
-console.log(props.color)
-
 const iconName = computed(() => `#icon-${props.name}`)
 const svgClass = computed(() => {
   if (props.name) return `svg-icon icon-${props.name}`

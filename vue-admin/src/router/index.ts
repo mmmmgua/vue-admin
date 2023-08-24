@@ -5,6 +5,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     redirect: '/home',
+    meta: { icon: 'log' },
     component: Layout,
     children: [
       {

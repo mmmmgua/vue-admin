@@ -17,7 +17,7 @@
             "path": "/permission/user",
             "component": "/Permission/User",
             "name": "permission",
-            "icon": ""
+            "icon": "user"
           },
           {
             "id": 6,
@@ -27,7 +27,7 @@
             "path": "/permission/role",
             "component": "/Permission/Role",
             "name": "permission",
-            "icon": ""
+            "icon": "role"
           },
           {
             "id": 1,
@@ -37,7 +37,7 @@
             "path": "/permission/menu",
             "component": "/Permission/Menu",
             "name": "permission",
-            "icon": ""
+            "icon": "menu"
           }
         ],
         "id": 0,
@@ -47,7 +47,7 @@
         "path": "/permission",
         "component": "/permission",
         "name": "menu",
-        "icon": "tree"
+        "icon": "system"
       }
     ],
     "msg": "请求成功"
