@@ -35,7 +35,7 @@
                     <DeleteOutlined style="font-size: 12px;" />
                     {{ $t('menuView.delete') }}
                   </a-menu-item>
-                  <a-menu-item>
+                  <a-menu-item @click="showConfigureRoleDrawer(record)">
                     <UserOutlined style="font-size: 12px;" />
                     {{ $t('roleView.role_permission') }}
                   </a-menu-item>
@@ -51,6 +51,7 @@
       </template>
     </a-table>
     <configure-role-dialog ref="dialog"></configure-role-dialog>
+    <configure-role-drawer ref="drawer"></configure-role-drawer>
   </div>
 </template>
 
@@ -61,6 +62,7 @@ import { Modal } from 'ant-design-vue'
 import { VueI18nTranslation } from 'vue-i18n'
 import { MessageApi } from 'ant-design-vue/es/message'
 import ConfigureRoleDialog from './components/ConfigureRoleDialog.vue'
+import ConfigureRoleDrawer from './components/ConfigureRoleDrawer.vue'
 import { role } from './types/role'
 import { getRoles } from '@/api/role'
 
@@ -69,6 +71,7 @@ const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
 const message = inject<MessageApi>('message') as MessageApi
 
 const dialog = ref()
+const drawer = ref()
 const tableLoading = ref<boolean>(false)
 const tableColumns = ref<object[]>(
   [
@@ -164,6 +167,9 @@ function mock(id: number) {
       res(id)
     }, 1500)
   })
+}
+function showConfigureRoleDrawer(record: role) {
+  drawer.value.show(record)
 }
 </script>
 

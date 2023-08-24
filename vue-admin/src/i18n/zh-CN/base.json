@@ -8,5 +8,6 @@
   "success": "成功",
   "more": "更多",
   "tips": "提示",
-  "delete_tips": "确定要删除吗?"
+  "delete_tips": "确定要删除吗?",
+  "save": "保存"
 }

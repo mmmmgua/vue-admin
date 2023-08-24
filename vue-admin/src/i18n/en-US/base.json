@@ -8,5 +8,6 @@
   "success": "Success !",
   "more": "More",
   "tips": "Tips",
-  "delete_tips": "Do you wanna delete this?"
+  "delete_tips": "Do you wanna delete this?",
+  "save": "Save"
 }

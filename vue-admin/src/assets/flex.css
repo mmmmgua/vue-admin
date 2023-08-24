@@ -16,6 +16,9 @@
 .flex-evenly {
   justify-content: space-evenly;
 }
+.flex-end {
+  justify-content: flex-end;
+}
 .items-center {
   align-items: center;
 }
