@@ -1,0 +1,16 @@
+{
+  "id": "Id",
+  "username": "Username",
+  "phone": "Phone",
+  "email": "Email",
+  "create_time": "Create Time",
+  "status": "Status",
+  "action": "Action",
+  "add_user": "Add User",
+  "search": "Search",
+  "reset": "Reset",
+  "search_placeholder": "Input something...",
+  "empty_select": "You an't selected any users",
+  "user": "User",
+  "assigning_roles": "Assigning roles"
+}

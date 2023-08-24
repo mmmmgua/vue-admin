@@ -3,6 +3,6 @@
   "home": "home",
   "sys_management": "System Management",
   "menu_management": "Menu Management",
-  "human_management": "Human Management",
+  "user_management": "Human Management",
   "role_management": "Role Management"
 }

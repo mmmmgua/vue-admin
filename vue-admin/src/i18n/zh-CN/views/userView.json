@@ -1,0 +1,16 @@
+{
+  "id": "Id",
+  "username": "用户名",
+  "phone": "手机号",
+  "email": "邮箱",
+  "create_time": "创建时间",
+  "status": "状态",
+  "action": "操作",
+  "add_user": "添加用户",
+  "search": "搜索",
+  "reset": "重置",
+  "search_placeholder": "请输入内容",
+  "empty_select": "您还没有选择任何用户",
+  "user": "用户",
+  "assigning_roles": "分配角色"
+}
