@@ -10,6 +10,16 @@
       {
         "child": [
           {
+            "id": 2,
+            "menuName": "user_management",
+            "menuType": 2,
+            "parentId": 1,
+            "path": "/permission/user",
+            "component": "/Permission/User",
+            "name": "permission",
+            "icon": ""
+          },
+          {
             "id": 6,
             "menuName": "role_management",
             "menuType": 2,
@@ -89,6 +99,20 @@
             "perms": "",
             "seq": 1,
             "status": 0
+          },
+          {
+            "component": "/permission/user",
+            "createTime": "2023-01-01 00:00:00",
+            "icon": "",
+            "id": "7",
+            "isFrame": 1,
+            "menuName": "user_management",
+            "menuType": 2,
+            "parentId": "1",
+            "path": "/permission/user",
+            "perms": "",
+            "seq": 2,
+            "status": 0
           }
         ],
         "component": "/permission",
@@ -126,6 +150,35 @@
           "roleName": "管理员",
           "seq": 2,
           "status": 0
+        }
+      ],
+      "total": 2
+    },
+    "msg": "请求成功"
+  },
+  "user": {
+    "code": 0,
+    "data": {
+      "dataList": [
+        {
+          "createTime":"2023-01-01 00:00:00",
+          "email": "123456@gmail.com",
+          "id": "1",
+          "phone": "",
+          "remark": "",
+          "status": 1,
+          "username": "amdin",
+          "validTime": "2099-12-31 23:59:59"
+        },
+        {
+          "createTime":"2023-01-01 00:00:00",
+          "email": "654321@gmail.com",
+          "id": "2",
+          "phone": "",
+          "remark": "",
+          "status": 1,
+          "username": "mmmmgua",
+          "validTime": "2099-12-31 23:59:59"
         }
       ],
       "total": 2
