@@ -5,7 +5,6 @@
         <menu-unfold-outlined v-if="isMenuShown" class="icon" />
         <menu-fold-outlined v-else class="icon" />
       </div>
-      <breadcrumb></breadcrumb>
     </div>
     <div>
       <logout-outlined :title="t('base.log_out')" class="icon" @click="showExitModal" />
@@ -23,7 +22,6 @@ import {
 } from "@ant-design/icons-vue"
 import { Modal } from "ant-design-vue"
 import { useUserStore } from "@/stores/user"
-import Breadcrumb from "../Breadcrumb/Breadcrumb.vue"
 
 const t = inject("t")
 const router = useRouter()

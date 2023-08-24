@@ -5,10 +5,11 @@
       <a-layout-header class="header">
         <nav-bar :is-menu-shown="isMenuShown" @toggle-menu="toggleMenu" />
       </a-layout-header>
-      <a-layout-content
-        :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
-      >
-        <router-view :key="currentRoute" />
+      <a-layout-content class="content-layout">
+        <breadcrumb class="bread-creamb"></breadcrumb>
+        <div class="main-layout">
+          <router-view :key="currentRoute" />
+        </div>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -19,7 +20,7 @@ import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import SlideBar from './SlideBar/SlideBar.vue'
 import NavBar from './NavBar/NavBar.vue';
-import { useAppStore } from '@/stores/app';
+import Breadcrumb from './Breadcrumb/Breadcrumb.vue';
 
 const isMenuShown = ref<boolean>(false);
 
@@ -40,5 +41,21 @@ const currentRoute = computed(() => {
 .header {
   background: var(--color-background);
   padding: 0;
+}
+.content-layout {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  .bread-creamb {
+    background: var(--color-background);
+    margin: 12px 16px 0 16px;
+    padding: 12px;
+  }
+  .main-layout {
+    background: var(--color-background);
+    margin: 12px 16px;
+    padding: 24px;
+    min-height: 280px;
+  }
 }
 </style>
