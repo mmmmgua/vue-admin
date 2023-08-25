@@ -86,7 +86,7 @@ function setActiveMenu(menus: ItemType[]): void {
 
 .ant-layout .ant-layout-sider {
   background: var(--color-background);
-  box-shadow: 6px 0px 10px 1px rgba(20, 20, 20, 0.1)
+  /* box-shadow: 6px 0px 10px 1px rgba(20, 20, 20, 0.1); */
 }
 
 .ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline {

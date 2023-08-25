@@ -1,7 +1,10 @@
 <template>
   <div class="nav-bar">
     <div class="flex items-center">
-      <div @click="toggleMenu">
+      <div class="flex items-center">
+        <span class="title">预设标题</span>
+      </div>
+      <div @click="toggleMenu" style="margin-left: 12px;">
         <menu-unfold-outlined v-if="isMenuShown" class="icon" />
         <menu-fold-outlined v-else class="icon" />
       </div>
@@ -62,5 +65,11 @@ const showExitModal = (): void => {
   font-size: 18px;
   cursor: pointer;
   color: var(--icon-color);
+}
+.title {
+  color: var(--primary-color);
+  font-size: 24px; 
+  font-weight: bold;
+  margin-left: 12px;
 }
 </style>

@@ -44,7 +44,6 @@ function generateBreadcrumbs(): void {
 <style scoped lang="scss">
 .breadcrumb-container {
   padding-left: 10px;
-  font-size: 16px;
   margin-top: -4px;
 }
 </style>
