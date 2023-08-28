@@ -9,5 +9,12 @@
   "more": "More",
   "tips": "Tips",
   "delete_tips": "Do you wanna delete this?",
-  "save": "Save"
+  "save": "Save",
+  "Mon": "Mon",
+  "Tue": "Tue",
+  "Wed": "Wed",
+  "Thu": "Thu",
+  "Fri": "Fri",
+  "Sat": "Sat",
+  "Sun": "Sun"
 }

@@ -1,8 +1,118 @@
 <template>
-  <div>{{ $t('login.login') }}</div>
+  <div class="flex column">
+    <div class="flex flex-evenly">
+      <a-card class="card-shadow">
+        <div class="flex items-center">
+          <ConsoleSqlOutlined class="icon"></ConsoleSqlOutlined>
+          <div class="value-layout">
+            <span>{{ $t('homeView.sql_times') }}</span>
+            <span class="value">90000</span>
+          </div>
+        </div>
+      </a-card>
+      <a-card class="card-shadow">
+        <div class="flex items-center">
+          <WechatOutlined class="icon wechat-color"></WechatOutlined>
+          <div class="value-layout">
+            <span>{{ $t('homeView.wechat_visitor') }}</span>
+            <span class="value">1024</span>
+          </div>
+        </div>
+      </a-card>
+      <a-card class="card-shadow">
+        <div class="flex items-center">
+          <SafetyOutlined class="icon safety-color"></SafetyOutlined>
+          <div class="value-layout">
+            <span>{{ $t('homeView.safety_disk') }}</span>
+            <span class="value">600</span>
+          </div>
+        </div>
+      </a-card>
+    </div>
+    <div class="charts-layout">
+      <div class="line-chart" id="lineCharts"></div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { inject, onMounted } from 'vue'
+import { ConsoleSqlOutlined, SafetyOutlined, WechatOutlined } from '@ant-design/icons-vue'
+import { VueI18nTranslation } from 'vue-i18n'
+
+const echarts = inject('echarts')
+const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
+
+onMounted(() => {
+  initLineChart()
+})
+
+function initLineChart() {
+  const lineCharts = echarts.init(document.getElementById('lineCharts'))
+  const option = {
+    title: {
+      text: t('homeView.week_visitors')
+    },
+    xAxis: {
+      type: 'category',
+      data: [t('base.Mon'), t('base.Tue'), t('base.Wed'), t('base.Thu'), t('base.Fri'), t('base.Sat'), t('base.Sun')]
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: [150, 230, 224, 218, 135, 147, 260],
+        type: 'line'
+      }
+    ]
+  }
+  lineCharts.setOption(option)
+  window.onresize = () => {
+    lineCharts.resize()
+  }
+}
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.icon {
+  font-size: 50px;
+}
+
+.wechat-color {
+  color: #7BB32E;
+}
+
+.safety-color {
+  color: #c4302b;
+}
+
+.value-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 14px;
+
+  .value {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.card-shadow {
+  box-shadow: 2px 2px 10px rgba($color: #000000, $alpha: .3);
+}
+
+.card-shadow:hover {
+  box-shadow: 2px 2px 10px rgba($color: #1677ff, $alpha: 1);
+}
+
+.charts-layout {
+  width: 100%;
+  margin-top: 30px;
+  .line-chart {
+    width: 100%;
+    height: 400px;
+  }
+}
+</style>
