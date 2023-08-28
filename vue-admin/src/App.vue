@@ -2,9 +2,7 @@
   <a-config-provider
     :local="locale"
     :theme="{
-      token: {
-        colorPrimary: '#1677ff'
-      },
+      token: token[appStore.theme]
     }"
   >
     <RouterView />
@@ -15,6 +13,7 @@
 import { computed, onMounted } from "vue";
 import { useAppStore } from "@/stores/app";
 import messages, { getLanguage } from "@/i18n/index";
+import { token } from '@/assets/theme/MaterialToken'
 
 const appStore = useAppStore()
 const locale = computed(() => {

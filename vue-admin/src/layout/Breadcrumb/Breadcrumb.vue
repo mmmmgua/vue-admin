@@ -1,8 +1,7 @@
 <template>
   <a-breadcrumb class="breadcrumb-container">
     <a-breadcrumb-item v-for="(route, index) in routeList" :key="index">
-
-      {{ $t(`menu.${route.meta.title}`) }}
+      <span class="text-color">{{ $t(`menu.${route.meta.title}`) }}</span>
     </a-breadcrumb-item>
   </a-breadcrumb>
 </template>
@@ -32,7 +31,7 @@ function generateBreadcrumbs(): void {
     if (deep >= pathAsList.length) {
       return data
     } else {
-      const currentPath = `/${pathAsList.slice(0, deep + 1 ).join('/')}`
+      const currentPath = `/${pathAsList.slice(0, deep + 1).join('/')}`
       const currentNode = routeList.filter(route => route.path === currentPath)
       data = data.concat(currentNode)
       return getRouteListByPath(path, routeList, data, deep + 1)
@@ -45,5 +44,9 @@ function generateBreadcrumbs(): void {
 .breadcrumb-container {
   padding-left: 10px;
   margin-top: -4px;
+
+  .text-color {
+    color: var(--text-primary) !important;
+  }
 }
 </style>

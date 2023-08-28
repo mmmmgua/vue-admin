@@ -7,10 +7,11 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, ref, h } from 'vue'
+import { inject, onMounted, ref, h, watch } from 'vue'
 import { RouteRecordRaw, useRouter } from 'vue-router'
 import { ItemType } from 'ant-design-vue/es/menu/src/hooks/useItems'
 import SvgIcon from '@/components/SvgIcon/SvgIcon.vue'
+import { token } from '@/assets/theme/MaterialToken'
 import { usePermissionStore } from '@/stores/permission'
 import { useAppStore } from '@/stores/app'
 
@@ -20,9 +21,14 @@ const props = defineProps(['isMenuShown'])
 
 const appStore = useAppStore()
 const permission_routes = usePermissionStore().permission_routes
+const layoutHeaderBg = ref<string>(token[appStore.theme]['layoutHeaderBg'])
 const openKeys = ref<string[]>([])
 const selectedKeys = ref<string[]>([])
 const menuItems = ref<ItemType[]>([])
+
+watch(appStore, () => {
+  layoutHeaderBg.value = token[appStore.theme]['layoutHeaderBg']
+})
 
 onMounted(() => {
   menuItems.value = generateSlideBarMenu(permission_routes)
@@ -38,7 +44,7 @@ function generateSlideBarMenu(routes: Array<RouteRecordRaw>): ItemType[] {
         label: t('menu.' + (route?.meta?.title ?? 'menu')),
         title: t('menu.' + (route?.meta?.title ?? 'menu')),
         key: route.path,
-        icon: icon ? h(SvgIcon, { name: icon, color: '#292a2d' }) : undefined
+        icon: icon ? h(SvgIcon, { name: icon }) : undefined
       }
       if (route.redirect && route?.children?.length) {
         tmp.label = t('menu.' + route.children[0]?.meta?.title ?? 'menu')
@@ -55,11 +61,9 @@ function generateSlideBarMenu(routes: Array<RouteRecordRaw>): ItemType[] {
 
   return res
 }
-
 function routerLink(item: ItemType): void {
   router.push({ path: item?.key?.toString(), replace: true })
 }
-
 function setActiveMenu(menus: ItemType[]): void {
   if (menus.length > 0) {
     const currentPath: string = router.currentRoute.value.path
@@ -81,15 +85,15 @@ function setActiveMenu(menus: ItemType[]): void {
 
 <style>
 .ant-menu-dark {
-  background: var(--color-background);
+  background: v-bind(layoutHeaderBg);
 }
 
 .ant-layout .ant-layout-sider {
-  background: var(--color-background);
+  background: v-bind(layoutHeaderBg);
   /* box-shadow: 6px 0px 10px 1px rgba(20, 20, 20, 0.1); */
 }
 
 .ant-menu-dark.ant-menu-inline .ant-menu-sub.ant-menu-inline {
-  background: var(--color-background);
+  background: v-bind(layoutHeaderBg);
 }
 </style>

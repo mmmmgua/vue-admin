@@ -16,21 +16,25 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue"
+import { inject, ref, watch } from "vue"
 import { useRouter } from "vue-router"
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons-vue"
+import { MenuFoldOutlined, MenuUnfoldOutlined, LogoutOutlined, } from "@ant-design/icons-vue"
 import { Modal } from "ant-design-vue"
+import { token } from '@/assets/theme/MaterialToken'
 import { useUserStore } from "@/stores/user"
+import { useAppStore } from "@/stores/app"
 
 const t = inject("t")
 const router = useRouter()
 
 defineProps(["isMenuShown"])
 const emit = defineEmits(["toggleMenu"])
+const appStore = useAppStore()
+const iconColor = ref<string>(token[appStore.theme]['iconDefault'])
+
+watch(appStore, () => {
+  iconColor.value = token[appStore.theme]['iconDefault']
+})
 
 const toggleMenu = (): void => {
   emit("toggleMenu")
@@ -64,11 +68,12 @@ const showExitModal = (): void => {
 .icon {
   font-size: 18px;
   cursor: pointer;
-  color: var(--icon-color);
+  color: v-bind(iconColor);
 }
+
 .title {
-  color: var(--primary-color);
-  font-size: 24px; 
+  color: var(--text-primary);
+  font-size: 24px;
   font-weight: bold;
   margin-left: 12px;
 }

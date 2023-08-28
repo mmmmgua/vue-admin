@@ -38,7 +38,6 @@ export const createSvg = (path: any, perfix = 'icon') => {
   if (path === '') return
   idPerfix = perfix
   const res = svgFind(path)
-  console.log(res);
   
   return {
     name: 'svg-transform',

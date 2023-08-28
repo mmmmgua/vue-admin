@@ -1,9 +1,9 @@
-export function validateAccount(username:string): boolean {
+export function validateAccount(username: string): boolean {
   const reg = /[a-zA-Z0-9]{5,}/
   return reg.test(username)
 }
 
-export function validatePwd(password:string): boolean {
+export function validatePwd(password: string): boolean {
   const reg = /[a-zA-Z0-9]{8,}/
   return reg.test(password)
 }
@@ -11,7 +11,7 @@ export function validatePwd(password:string): boolean {
 /**
  * @return object node
  */
-export function getTreeNodeById(id: string|number, tree: any[]): any {
+export function getTreeNodeById(id: string | number, tree: any[]): any {
   for (let i = 0; i < tree.length; i++) {
     const node = tree[i]
     if (node.id === id) {

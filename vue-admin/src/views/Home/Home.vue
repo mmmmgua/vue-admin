@@ -1,16 +1,16 @@
 <template>
-  <div class="flex column">
+  <div class="flex column" ref="homeLayout">
     <div class="flex flex-evenly">
-      <a-card class="card-shadow">
+      <a-card class="card card-shadow">
         <div class="flex items-center">
-          <ConsoleSqlOutlined class="icon"></ConsoleSqlOutlined>
+          <ConsoleSqlOutlined class="icon sql-color"></ConsoleSqlOutlined>
           <div class="value-layout">
             <span>{{ $t('homeView.sql_times') }}</span>
             <span class="value">90000</span>
           </div>
         </div>
       </a-card>
-      <a-card class="card-shadow">
+      <a-card class="card card-shadow">
         <div class="flex items-center">
           <WechatOutlined class="icon wechat-color"></WechatOutlined>
           <div class="value-layout">
@@ -19,7 +19,7 @@
           </div>
         </div>
       </a-card>
-      <a-card class="card-shadow">
+      <a-card class="card card-shadow">
         <div class="flex items-center">
           <SafetyOutlined class="icon safety-color"></SafetyOutlined>
           <div class="value-layout">
@@ -36,45 +36,80 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted } from 'vue'
+import { inject, onMounted, watch, ref, shallowRef, reactive, onBeforeMount } from 'vue'
 import { ConsoleSqlOutlined, SafetyOutlined, WechatOutlined } from '@ant-design/icons-vue'
 import { VueI18nTranslation } from 'vue-i18n'
+import { useAppStore } from '@/stores/app'
+import { token } from '@/assets/theme/MaterialToken'
 
 const echarts = inject('echarts')
 const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
 
-onMounted(() => {
-  initLineChart()
+const appStore = useAppStore()
+const homeLayout = ref()
+const textPrimary = ref<string>(token[appStore.theme]['textPrimary'])
+const cardBackground = ref<string>(token[appStore.theme]['cardBackground'])
+const lineCharts = shallowRef()
+const resizeObserver = ref<ResizeObserver>()
+
+// tmp
+const option = reactive({
+  title: {
+    text: t('homeView.week_visitors'),
+    textStyle: { color: textPrimary.value }
+  },
+  xAxis: {
+    type: 'category',
+    data: [t('base.Mon'), t('base.Tue'), t('base.Wed'), t('base.Thu'), t('base.Fri'), t('base.Sat'), t('base.Sun')]
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {
+      data: [150, 230, 224, 218, 135, 147, 260],
+      type: 'line'
+    }
+  ]
 })
 
-function initLineChart() {
-  const lineCharts = echarts.init(document.getElementById('lineCharts'))
-  const option = {
-    title: {
-      text: t('homeView.week_visitors')
-    },
-    xAxis: {
-      type: 'category',
-      data: [t('base.Mon'), t('base.Tue'), t('base.Wed'), t('base.Thu'), t('base.Fri'), t('base.Sat'), t('base.Sun')]
-    },
-    yAxis: {
-      type: 'value'
-    },
-    series: [
-      {
-        data: [150, 230, 224, 218, 135, 147, 260],
-        type: 'line'
-      }
-    ]
+onMounted(() => {
+  initLineChart(option)
+  resizeObserver.value = new ResizeObserver(() => {
+    // TODO: 防抖
+    lineCharts.value.resize()
+  })
+  resizeObserver.value.observe(homeLayout.value)
+})
+
+onBeforeMount(() => {
+  if (resizeObserver.value) {
+    resizeObserver.value.disconnect()
   }
-  lineCharts.setOption(option)
-  window.onresize = () => {
-    lineCharts.resize()
+})
+
+watch(appStore, () => {
+  textPrimary.value = token[appStore.theme]['textPrimary']
+  cardBackground.value = token[appStore.theme]['cardBackground']
+  option.title.textStyle.color = textPrimary.value
+  if (lineCharts.value) {
+    lineCharts.value.setOption(option, true)
   }
+})
+
+function initLineChart(option: any) {
+  lineCharts.value = echarts.init(document.getElementById('lineCharts'))
+  lineCharts.value.setOption(option)
 }
 </script>
 
 <style lang="scss" scoped>
+:deep(.ant-card) {
+  background: v-bind(cardBackground);
+}
+
+:deep(.ant-card-bordered) {}
+
 .icon {
   font-size: 50px;
 }
@@ -85,6 +120,10 @@ function initLineChart() {
 
 .safety-color {
   color: #c4302b;
+}
+
+.sql-color {
+  color: #FFA500
 }
 
 .value-layout {
@@ -99,17 +138,22 @@ function initLineChart() {
   }
 }
 
+.card {
+  color: var(--color-primary);
+}
+
 .card-shadow {
   box-shadow: 2px 2px 10px rgba($color: #000000, $alpha: .3);
 }
 
 .card-shadow:hover {
-  box-shadow: 2px 2px 10px rgba($color: #1677ff, $alpha: 1);
+  box-shadow: 0px 2px 20px rgba($color: #1677ff, $alpha: 1);
 }
 
 .charts-layout {
   width: 100%;
   margin-top: 30px;
+
   .line-chart {
     width: 100%;
     height: 400px;
