@@ -2,5 +2,6 @@
   "sql_times": "SQL Query Times",
   "wechat_visitor": "Wechat Visitors",
   "safety_disk": "write disk safety times",
-  "week_visitors": "Week Visitors"
+  "week_visitors": "Week Visitors",
+  "upload_logs": "Upload Logs"
 }

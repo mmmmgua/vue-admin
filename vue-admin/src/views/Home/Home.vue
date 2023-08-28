@@ -1,8 +1,8 @@
 <template>
   <div class="flex column" ref="homeLayout">
-    <div class="flex flex-evenly">
+    <div class="card-layout">
       <a-card class="card card-shadow">
-        <div class="flex items-center">
+        <div class="flex items-center flex-evenly">
           <ConsoleSqlOutlined class="icon sql-color"></ConsoleSqlOutlined>
           <div class="value-layout">
             <span>{{ $t('homeView.sql_times') }}</span>
@@ -11,7 +11,7 @@
         </div>
       </a-card>
       <a-card class="card card-shadow">
-        <div class="flex items-center">
+        <div class="flex items-center flex-evenly">
           <WechatOutlined class="icon wechat-color"></WechatOutlined>
           <div class="value-layout">
             <span>{{ $t('homeView.wechat_visitor') }}</span>
@@ -20,11 +20,20 @@
         </div>
       </a-card>
       <a-card class="card card-shadow">
-        <div class="flex items-center">
+        <div class="flex items-center flex-evenly">
           <SafetyOutlined class="icon safety-color"></SafetyOutlined>
           <div class="value-layout">
             <span>{{ $t('homeView.safety_disk') }}</span>
             <span class="value">600</span>
+          </div>
+        </div>
+      </a-card>
+      <a-card class="card card-shadow">
+        <div class="flex items-center flex-evenly">
+          <RiseOutlined class="icon upload-color"></RiseOutlined>
+          <div class="value-layout">
+            <span>{{ $t('homeView.upload_logs') }}</span>
+            <span class="value">200</span>
           </div>
         </div>
       </a-card>
@@ -37,7 +46,7 @@
 
 <script setup lang="ts">
 import { inject, onMounted, watch, ref, shallowRef, reactive, onBeforeMount } from 'vue'
-import { ConsoleSqlOutlined, SafetyOutlined, WechatOutlined } from '@ant-design/icons-vue'
+import { ConsoleSqlOutlined, SafetyOutlined, WechatOutlined, RiseOutlined } from '@ant-design/icons-vue'
 import { VueI18nTranslation } from 'vue-i18n'
 import { useAppStore } from '@/stores/app'
 import { token } from '@/assets/theme/MaterialToken'
@@ -108,7 +117,11 @@ function initLineChart(option: any) {
   background: v-bind(cardBackground);
 }
 
-:deep(.ant-card-bordered) {}
+.card-layout {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 16px;
+}
 
 .icon {
   font-size: 50px;
@@ -126,14 +139,18 @@ function initLineChart(option: any) {
   color: #FFA500
 }
 
+.upload-color {
+  color: #9b59b6;
+}
+
 .value-layout {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 14px;
+  font-size: 16px;
 
   .value {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
   }
 }
