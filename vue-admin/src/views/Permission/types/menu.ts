@@ -12,7 +12,7 @@ type menuTree = {
   icon: string,
   createTime: string,
   updateTime: string,
-  child: menuTree[]
+  child?: menuTree[]
 }
 
 export type { menuTree }
