@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { login } from '@/api/login'
+import { getRsaStringToBase64 } from '@/utils/utils'
 
 export const useUserStore = defineStore('user', {
   state: () => {
@@ -13,8 +14,10 @@ export const useUserStore = defineStore('user', {
     }
   },
   actions: {
-    async login(postData: object) {
+    async login(loginData: object) {
       try {
+        const postData = {...loginData}
+        postData['password'] = getRsaStringToBase64('key', postData['password'])
         const { data } = await login(postData)
         if (data.code === 0) {
           this.user_token = data.data

@@ -3,7 +3,8 @@
     <span class="title">{{ $t('login.login') }}</span>
     <div class="card">
       <div class="flex column justify-center">
-        <a-form ref="form" :model="formData" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol" labelAlign="left">
+        <a-form ref="form" :model="formData" :rules="rules" :label-col="labelCol" :wrapper-col="wrapperCol"
+          labelAlign="left">
           <a-form-item name="username" :label="$t('login.account')">
             <a-input v-model:value="formData.username" :maxlength="8">
               <template #prefix>
@@ -26,7 +27,9 @@
             </a-input>
           </a-form-item>
         </a-form>
-        <a-button class="submit-btn" type="primary" @click="submit" :loading="submitLoading">{{ $t('login.login') }}</a-button>
+        <a-button class="submit-btn" type="primary" @click="submit" :loading="submitLoading">
+          {{ $t('login.login') }}
+        </a-button>
       </div>
     </div>
   </div>
@@ -35,11 +38,12 @@
 <script setup lang="ts">
 import { inject, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { VueI18nTranslation } from 'vue-i18n'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { validateAccount, validatePwd } from '@/utils/utils'
 import { useUserStore } from '@/stores/user'
 
-const t = inject('t')
+const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
 const router = useRouter()
 
 const labelCol = { span: 6 }
@@ -51,7 +55,7 @@ const validateUsername = () => {
     if (!validateAccount(formData.username)) {
       reject(t('login.account_format_err'))
     }
-    resolve()
+    resolve(null)
   })
 }
 const validatePassword = () => {
@@ -59,7 +63,7 @@ const validatePassword = () => {
     if (!validatePwd(formData.password)) {
       reject(t('login.pwd_format_err'))
     }
-    resolve()
+    resolve(null)
   })
 }
 const rules = {
@@ -76,7 +80,7 @@ const formData = reactive({
 const submit = () => {
   form.value
     .validate()
-    .then(async (data) => {
+    .then(async (data: any) => {
       submitLoading.value = true
       await useUserStore().login(data)
       setTimeout(() => {
@@ -84,9 +88,8 @@ const submit = () => {
         router.push({ path: '/' })
       }, 2000)
     })
-    .catch((err) => {
+    .catch(() => {
       submitLoading.value = false
-      console.log(err)
     })
 }
 </script>
@@ -98,12 +101,14 @@ const submit = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .title {
     font-size: 28px;
     padding-bottom: 20px;
     margin-top: -100px;
     font-weight: bold;
   }
+
   .card {
     width: 400px;
     padding: 30px;
@@ -111,11 +116,13 @@ const submit = () => {
     background: #fff;
     box-shadow: 10px 20px 20px 10px rgba(0, 0, 0, 0.18);
   }
+
   .verify-code {
     width: 70px;
     height: 100%;
     background: gray;
   }
+
   .submit-btn {
     width: 50%;
     height: 40px;
@@ -124,10 +131,12 @@ const submit = () => {
     border-radius: 16px;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   :deep(.ant-form-item-label > label) {
     color: var(--vt-c-text-dark-2);
   }
+
   .card {
     background: #313236 !important;
   }

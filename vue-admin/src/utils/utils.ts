@@ -26,3 +26,11 @@ export function getTreeNodeById(id: string | number, tree: any[]): any {
     }
   }
 }
+
+import JSEncrypt from 'jsencrypt'
+export function getRsaStringToBase64(publicKey: string, rawString: string) {
+	const encryptor = new JSEncrypt()
+	encryptor.setPublicKey(publicKey)
+	const rsaPassword = encryptor.encrypt(rawString)
+	return rsaPassword
+}
