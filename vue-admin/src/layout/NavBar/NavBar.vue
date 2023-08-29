@@ -9,7 +9,8 @@
         <menu-fold-outlined v-else class="icon" />
       </div>
     </div>
-    <div>
+    <div class="flex items-center">
+      <language class="m-r-md"></language>
       <logout-outlined :title="t('base.log_out')" class="icon" @click="showExitModal" />
     </div>
   </div>
@@ -18,13 +19,15 @@
 <script setup lang="ts">
 import { inject, ref, watch } from "vue"
 import { useRouter } from "vue-router"
+import { VueI18nTranslation } from "vue-i18n"
 import { MenuFoldOutlined, MenuUnfoldOutlined, LogoutOutlined, } from "@ant-design/icons-vue"
 import { Modal } from "ant-design-vue"
+import Language from "../Language/Language.vue"
 import { token } from '@/assets/theme/MaterialToken'
 import { useUserStore } from "@/stores/user"
 import { useAppStore } from "@/stores/app"
 
-const t = inject("t")
+const t = inject<VueI18nTranslation>("t") as VueI18nTranslation
 const router = useRouter()
 
 defineProps(["isMenuShown"])
@@ -76,5 +79,8 @@ const showExitModal = (): void => {
   font-size: 24px;
   font-weight: bold;
   margin-left: 12px;
+}
+.m-r-md {
+  margin-right: 20px;
 }
 </style>

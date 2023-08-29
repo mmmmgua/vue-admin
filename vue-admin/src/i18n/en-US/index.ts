@@ -1,7 +1,7 @@
 import { getFileName } from '@/utils/url'
-const localeModules = import.meta.glob('./**.json',{eager:true})
-const viewsModules = import.meta.globEager('./views/**.json',{eager:true})
-const data = {}
+const localeModules = import.meta.glob('./**.json', { eager: true }) as any
+const viewsModules = import.meta.glob('./views/**.json', { eager: true }) as any
+const data: any = {}
 
 Object.keys(localeModules).forEach((key) => {
   data[getFileName(key)] = localeModules[key].default

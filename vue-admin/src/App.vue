@@ -12,12 +12,12 @@
 <script setup lang="ts">
 import { computed, onMounted } from "vue";
 import { useAppStore } from "@/stores/app";
-import messages, { getLanguage } from "@/i18n/index";
+import { messages, getLocalLanguage } from "@/i18n/index";
 import { token } from '@/assets/theme/MaterialToken'
 
 const appStore = useAppStore()
 const locale = computed(() => {
-  return messages[getLanguage()];
+  return messages[getLocalLanguage()];
 });
 
 onMounted(() => {

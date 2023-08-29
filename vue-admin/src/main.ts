@@ -12,25 +12,21 @@ import 'ant-design-vue/dist/reset.css'
 import router from './router'
 import './router/router-interceptor'
 // 国际化 https://vue-i18n.intlify.dev/guide/
-import messages, { getLocalLanguage } from '@/i18n'
-import { createI18n } from 'vue-i18n'
+import { i18n } from '@/i18n/index'
 // 自定义svg
 import SvgIcon from './components/SvgIcon/SvgIcon.vue'
 // 图表 https://echarts.apache.org/handbook/zh/get-started
 import * as echarts from 'echarts'
 
-
 const app = createApp(App)
 app.component('svg-icon', SvgIcon)
-const i18n = createI18n({
-  locale: getLocalLanguage(),
-  messages
-})
 
 // global message: https://www.antdv.com/components/message-cn
 app.provide('message', message)
 // global translate: https://kazupon.github.io/vue-i18n/zh/api/#t
-app.provide('t', i18n.global.t)
+// avoid ts warning: 类型实例化过深，且可能无限
+const global = i18n.global
+app.provide('t', global.t)
 // global echarts: https://echarts.apache.org/examples/zh/index.html
 app.provide('echarts', echarts)
 

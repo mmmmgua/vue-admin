@@ -32,10 +32,8 @@ watch(appStore, () => {
 .svg-icon {
   width: 1em;
   height: 1em;
-  fill: currentColor;
   vertical-align: middle;
   /* 部分svg由图片生成,以下属性曲线救国修改颜色 */
-  filter: drop-shadow(v-bind(props['color'] || iconDefault) 100px 0);
-  transform: translateX(-100px);
+  fill: v-bind(props?.color || iconDefault);
 }
 </style>

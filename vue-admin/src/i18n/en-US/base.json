@@ -16,5 +16,7 @@
   "Thu": "Thu",
   "Fri": "Fri",
   "Sat": "Sat",
-  "Sun": "Sun"
+  "Sun": "Sun",
+  "en": "English",
+  "zh-CN": "简体中文"
 }
