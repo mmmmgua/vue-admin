@@ -1,3 +1,4 @@
+import { useUserStore } from "@/stores/user"
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -8,10 +9,10 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   (config) => {
-    /*const token = useUserStore().$state.user_token
+    const token = useUserStore().user_token
     if (token) {
       config.headers['Authorization'] = token
-    }*/
+    }
     return config
   },
   (error) => {
@@ -24,8 +25,8 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => {
     const status = response.status
-    if (status/ 100 === 5) {
-      // TODO: error message
+    if (status / 100 === 5) {
+      console.warn('server error: ', JSON.stringify(response.data))
     }
     return response
   },

@@ -42,8 +42,10 @@ import { VueI18nTranslation } from 'vue-i18n'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { validateAccount, validatePwd } from '@/utils/utils'
 import { useUserStore } from '@/stores/user'
+import { MessageApi } from 'ant-design-vue/es/message'
 
 const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
+const message = inject<MessageApi>('message') as MessageApi
 const router = useRouter()
 
 const labelCol = { span: 6 }
@@ -90,6 +92,7 @@ const submit = () => {
     })
     .catch(() => {
       submitLoading.value = false
+      message.error(t('error.server_error'))
     })
 }
 </script>
