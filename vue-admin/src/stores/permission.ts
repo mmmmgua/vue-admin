@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { RouteRecordRaw } from 'vue-router'
-import { getUserMenuTree } from '../api/user'
+import { getUserMenuTree } from '../api/user/user'
 import { constantRoutes } from '../router/index'
 import Layout from '../layout/layout.vue'
 
@@ -25,7 +25,7 @@ function filterAsyncRoutes(menuTree: Array<any>) {
       if (menu.menuType === Directory) {
         tmp.component = Layout
       } else if (menu.menuType === Menu) {
-        tmp.component =  modules[`../views${menu.component}.vue`]
+        tmp.component = modules[`../views${menu.component}.vue`]
       }
       if (menu.child && menu.child.length > 0) {
         tmp.children = filterAsyncRoutes(menu.child)

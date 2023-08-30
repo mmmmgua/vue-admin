@@ -171,4 +171,6 @@ function showMenuDrawer(type: string, menuInfo?: menuTree): void {
   .status-stop {
     color: #db2214;
   }
-}</style>
+}
+</style>
+@/api/menu/menu

@@ -1,8 +1,8 @@
 <template>
-  <a-modal v-model:open="visible" :title="t('userView.assigning_roles')" 
-  :okText="t('base.confirm')" :cancelText="t('base.cancel')" :confirmLoading="confirmBtnLoading" @ok="setPermission">
-    <a-table :loading="tableLoading" :columns="tableColumns" :dataSource="tableResource"
-     :rowSelection="rowSelection" :pagination="false" rowKey="id">
+  <a-modal v-model:open="visible" :title="t('userView.assigning_roles')" :okText="t('base.confirm')"
+    :cancelText="t('base.cancel')" :confirmLoading="confirmBtnLoading" @ok="setPermission">
+    <a-table :loading="tableLoading" :columns="tableColumns" :dataSource="tableResource" :rowSelection="rowSelection"
+      :pagination="false" rowKey="id">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'status'">
           <span :class="generateStatusColumnClass(record.status)">
@@ -21,7 +21,7 @@ import { MessageApi } from 'ant-design-vue/es/message'
 import { getRoles } from '@/api/role'
 import { role } from '../types/role'
 
-const STATUS_TYPE = {0: 'status_normal', 1: 'status_stop'}
+const STATUS_TYPE = { 0: 'status_normal', 1: 'status_stop' }
 const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
 const message = inject<MessageApi>('message') as MessageApi
 
@@ -98,11 +98,11 @@ async function setPermission() {
     message.error(t('error.server_error'))
   }
 }
-function mock(){
+function mock() {
   return new Promise(res => {
     setTimeout(() => {
       res(null)
-    }, 1500);
+    }, 1500)
   })
 }
 
@@ -121,4 +121,4 @@ defineExpose({
 .status-stop {
   color: #db2214;
 }
-</style>
+</style>@/api/role/role

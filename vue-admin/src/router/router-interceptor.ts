@@ -14,7 +14,7 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const hasPermissionRoutes =
         usePermissionStore().permission_routes && usePermissionStore().permission_routes.length > 0
-        
+
       if (hasPermissionRoutes) {
         next()
       } else {
@@ -31,7 +31,7 @@ router.beforeEach(async (to, from, next) => {
         } catch (error: any) {
           // for debug
           console.warn('generate menu tree failed: ', JSON.stringify(error.message))
-          next(`/login?redirect=${to.path}`)
+          next({ path: `/login?redirect=${to.path}`, replace: true })
         }
       }
     }

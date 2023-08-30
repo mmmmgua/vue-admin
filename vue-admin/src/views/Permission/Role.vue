@@ -13,7 +13,8 @@
           {{ $t('roleView.reset') }}
         </a-button>
       </div>
-      <a-button :icon="h(DeleteOutlined)" type="primary" danger @click="batchDelete">{{ $t('roleView.batch_delete') }}</a-button>
+      <a-button :icon="h(DeleteOutlined)" type="primary" danger @click="batchDelete">{{ $t('roleView.batch_delete')
+      }}</a-button>
     </div>
     <a-table class="m-t-lg" :columns="tableColumns" :rowSelection="rowSelection" :loading="tableLoading"
       :dataSource="currentData" rowKey="id">
@@ -189,4 +190,4 @@ function showConfigureRoleDrawer(record: role) {
 .status-stop {
   color: #db2214;
 }
-</style>
+</style>@/api/role/role

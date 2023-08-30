@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { login } from '@/api/login'
+import { login } from '@/api/login/login'
 import { getRsaStringToBase64 } from '@/utils/utils'
 
 export const useUserStore = defineStore('user', {
@@ -16,7 +16,7 @@ export const useUserStore = defineStore('user', {
   actions: {
     async login(loginData: object) {
       try {
-        const postData = {...loginData}
+        const postData = { ...loginData }
         postData['password'] = getRsaStringToBase64('key', postData['password'])
         const { data } = await login(postData)
         if (data.code === 0) {
@@ -26,17 +26,17 @@ export const useUserStore = defineStore('user', {
         return Promise.reject(error)
       }
     },
-    async logout(){
+    async logout() {
       try {
         // TODO: 调用退出接口
         this.user_token = ''
         return new Promise(resolve => {
           setTimeout(() => {
             resolve(null)
-          }, 500);
+          }, 500)
         })
       } catch (error) {
-        
+
       }
     }
   }

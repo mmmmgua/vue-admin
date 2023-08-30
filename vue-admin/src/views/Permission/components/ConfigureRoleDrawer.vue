@@ -1,6 +1,7 @@
 <template>
   <a-drawer v-model:open="drawerVisible" :title="t('roleView.role_permission')" :maskClosable="false">
-    <a-tree v-model:checkedKeys="checkedKeys" v-model:selectedKeys="selectedKeys" :treeData="treeResource" checkable></a-tree>
+    <a-tree v-model:checkedKeys="checkedKeys" v-model:selectedKeys="selectedKeys" :treeData="treeResource"
+      checkable></a-tree>
     <template #footer>
       <div class="flex flex-end">
         <a-button type="primary" :loading="saveBtnLoading" @click="savePermission">{{ $t('base.save') }}</a-button>
@@ -86,6 +87,4 @@ defineExpose({
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>@/api/menu/menu
