@@ -1,12 +1,12 @@
 import './assets/main.css'
 import './assets/flex.css'
-import { createApp } from 'vue'
+import { createApp, h, render } from 'vue'
 import App from './App.vue'
 // 全局状态 https://pinia.web3doc.top/introduction.html
 import { createPinia } from 'pinia'
 import { storagePlugin } from '@/stores/plugins/sotrage-plugin.ts'
 // UI库 https://www.antdv.com/components/overview-cn
-import Antd, { message } from 'ant-design-vue'
+import Antd, { Spin, message } from 'ant-design-vue'
 import 'ant-design-vue/dist/reset.css'
 // 路由 https://router.vuejs.org/zh/introduction.html
 import router from './router'
@@ -32,6 +32,14 @@ app.provide('echarts', echarts)
 
 const pinia = createPinia()
 pinia.use(storagePlugin)
+
+app.directive('loading', (el, { value }) => {
+  el.style = 'position: relative'
+  const mask = { background: 'rgba(0,0,0,.2)' }
+  const absoluteStyle = { position: 'absolute', margin: 'auto', inset: '0px' }
+  const flexCenter = { display: 'flex', 'justify-content': 'center', 'align-items': 'center' }
+  render(h(Spin, { spinning: value, style: { ...absoluteStyle, ...flexCenter, ...mask } }), el)
+})
 
 app.use(pinia)
 app.use(router)

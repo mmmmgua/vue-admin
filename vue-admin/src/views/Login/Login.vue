@@ -22,7 +22,7 @@
           <a-form-item name="code" :label="$t('login.code')">
             <a-input v-model:value="formData.code">
               <template #suffix>
-                <div @click="getCaptchaImage">
+                <div v-loading="captchaLoading" @click="getCaptchaImage">
                   <a-image style="cursor: pointer;" :width="70" :preview="false" :src="captchaBase64" />
                 </div>
               </template>
@@ -83,6 +83,7 @@ const formData = reactive({
 })
 const captchaBase64 = ref<string>()
 const captchaKey = ref<string>('')
+const captchaLoading = ref<boolean>(false)
 
 onMounted(() => {
   getCaptchaImage()
@@ -90,6 +91,7 @@ onMounted(() => {
 
 async function getCaptchaImage() {
   try {
+    captchaLoading.value = true
     const { data } = await getCaptcha()
     if (data.code === 0) {
       captchaBase64.value = data.data.captchaImageBase64Data
@@ -97,7 +99,9 @@ async function getCaptchaImage() {
     } else {
       message.warn(data.msg)
     }
+    captchaLoading.value = false
   } catch (error) {
+    captchaLoading.value = false
     message.error(t('error.server_error'))
   }
 }
