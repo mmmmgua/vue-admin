@@ -22,7 +22,9 @@
           <a-form-item name="code" :label="$t('login.code')">
             <a-input v-model:value="formData.code">
               <template #suffix>
-                <div class="verify-code"></div>
+                <div @click="getCaptchaImage">
+                  <a-image style="cursor: pointer;" :width="70" :preview="false" :src="captchaBase64" />
+                </div>
               </template>
             </a-input>
           </a-form-item>
@@ -36,13 +38,14 @@
 </template>
 
 <script setup lang="ts">
-import { inject, reactive, ref } from 'vue'
+import { inject, onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { VueI18nTranslation } from 'vue-i18n'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import { validateAccount, validatePwd } from '@/utils/utils'
 import { useUserStore } from '@/stores/user'
 import { MessageApi } from 'ant-design-vue/es/message'
+import { getCaptcha } from '@/api/login/login'
 
 const t = inject<VueI18nTranslation>('t') as VueI18nTranslation
 const message = inject<MessageApi>('message') as MessageApi
@@ -78,8 +81,27 @@ const formData = reactive({
   password: '',
   code: ''
 })
+const captchaBase64 = ref<string>()
+const captchaKey = ref<string>('')
 
-const submit = () => {
+onMounted(() => {
+  getCaptchaImage()
+})
+
+async function getCaptchaImage() {
+  try {
+    const { data } = await getCaptcha()
+    if (data.code === 0) {
+      captchaBase64.value = data.data.captchaImageBase64Data
+      captchaKey.value = data.data.captchaKey
+    } else {
+      message.warn(data.msg)
+    }
+  } catch (error) {
+    message.error(t('error.server_error'))
+  }
+}
+function submit() {
   form.value
     .validate()
     .then(async (data: any) => {
